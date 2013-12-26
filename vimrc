@@ -7,6 +7,7 @@ scriptencoding utf-8
 " Written by Aron Griffis <agriffis@gentoo.org>
 " Modified by Ryan Phillips <rphillips@gentoo.org>
 " Modified some more by Ciaran McCreesh <ciaranm@gentoo.org>
+" Modified evem more by Jonathan Almeida <nojalmeida@gmail.com>
 " Added Redhat's vimrc info by Seemant Kulleen <seemant@gentoo.org>
 
 " You can override any of these settings on a global basis via the
@@ -198,3 +199,7 @@ endif
 
 " vim: set fenc=utf-8 tw=80 sw=2 sts=2 et foldmethod=marker :
 
+" For converting tabs to spaces
+set tabstop=4
+set shiftwidth=4
+set expandtab
