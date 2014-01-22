@@ -1,0 +1,67 @@
+
+background yes
+update_interval 5
+
+cpu_avg_samples 2
+net_avg_samples 2
+temperature_unit celsius
+
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+
+gap_x 40
+gap_y 50
+minimum_size 350 700
+maximum_width 350
+own_window yes
+own_window_type desktop
+own_window_transparent no
+own_window_argb_visual yes
+own_window_argb_value o
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+border_inner_margin 0
+border_outer_margin 0
+alignment top_right
+
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders no
+default_shade_color 112422
+
+override_utf8_locale yes
+use_xft yes
+xftfont Open Sans:size=10
+xftalpha 1
+uppercase no
+
+default_color white
+color1 DDDDDD
+color2 AAAAAA
+color3 888888
+color4 EF5A29
+
+
+TEXT
+${font Open Sans Light:size=24}${time %A}${font Open Sans:size=24} - ${time %d %B}${font}
+${goto 0}${font Raleway:weight=Light :size=80}${time %H:%M}${font}
+
+
+
+${font econ :size=24}A 
+${goto 58}${voffset -38}${font Raleway:size=18}System
+
+${goto 0}${font Open Sans:size=12}CPU: ${cpu cpu0}%${goto 140}RAM: ${memperc}% ${goto 280}Swap: ${alignr}$swapperc%
+
+${voffset 4}${font Open Sans:size=12}TOP${voffset 0}${goto 186}CPU${alignr}RAM${font}
+${voffset -1}${goto 0}${top name 1}${font Open Sans:size=10} ${goto 180}${top cpu 1}${alignr }${top mem 1}${font}
+${voffset -1}${goto 0}${top name 2}${font Open Sans:size=10} ${goto 180}${top cpu 2}${alignr }${top mem 2}${font}
+${voffset -1}${goto 0}${top name 3}${font Open Sans:size=10} ${goto 180}${top cpu 3}${alignr }${top mem 3}${font}
+${voffset -1}${goto 0}${top name 4}${font Open Sans:size=10} ${goto 180}${top cpu 4}${alignr }${top mem 4}${font}
+
+${font Open Sans:size=10}${color #98c2c7}BBC World News
+${font Open Sans:size=10}${color white}${rss http://feeds.bbci.co.uk/news/world/rss.xml 20 item_titles 4}
+
+${font Open Sans:size=10}${color #98c2c7}Reuters World News
+${font Open Sans:size=10}${color white}${rss http://feeds.reuters.com/Reuters/worldNews?format=xml 20 item_titles 4}

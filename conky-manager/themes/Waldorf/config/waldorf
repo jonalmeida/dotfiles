@@ -201,7 +201,7 @@ color5 bfff80
 ## Load Lua for shading (optional)
 ## Set the path to your script here.
 #
-lua_load /home/jonathan/.conky.lua
+lua_load $HOME/git/dotfiles/conky-manager/themes/Waldorf/config/conky.lua
 lua_draw_hook_pre draw_lua
 
 
@@ -225,7 +225,7 @@ ${font Sans:bold:size=8.25}${color4}CPU and FANS  ${color3}${hr 2}${font}
 ${font StyleBats:size=10}${color1}o${voffset -1}${font}${color2} CPU1 temp ${alignr}${execi 1 sensors | grep 'Core 0' | cut -c 17-21} °C
 ${font StyleBats:size=10}${color1}o${voffset -1}${font}${color2} CPU2 temp ${alignr}${execi 1 sensors | grep 'Core 1' | cut -c 17-21} °C
 ${font StyleBats:size=10}${color1}o${voffset -1}${font}${color2} CPU Fan:${alignr} ${exec sensors | grep 'Fan' | cut -c 13-17} RPM $color
-#${font StyleBats:size=10}${color1}o${voffset -1}${font}${color2} Mobo Temp:${alignr} ${exec sensors | grep 'temp2' | cut -c15-20}c${color} 
+#${font StyleBats:size=10}${color1}o${voffset -1}${font}${color2} Mobo Temp:${alignr} ${exec sensors | grep 'temp2' | cut -c15-20}c${color}
 #${font StyleBats:size=10}${color1}o${voffset -1}${font}${color2} NVidia Temp:${alignr} ${nvidia temp} °C
 ${font Sans:bold:size=8.25}${color4}HDD  ${color3}${hr 2}${font}
 ${voffset 4}${font StyleBats:size=10}${color1}x${font}${color2} ROOT${goto 95}${fs_used /}${goto 133}/ ${fs_size /}${alignr}${fs_free_perc /}% Free
@@ -243,4 +243,5 @@ ${font PizzaDude Bullets:size=9.5}${color1}U${font}${color2} Download${goto 103}
 ${font PizzaDudeBullets:size=9.5}${color1}O${font}${color2} Upload${goto 100}${totalup wlan0}${goto 150}${font PizzaDudeBullets:size=9.5}${color1}N${font}${color2} Up${alignr}${upspeed wlan0}
 
 
-${voffset 40}${execpi 600 sed -n '3p' $HOME/Accuweather_Conky_Int_Images/messages}
+# Can't find the weather icon set anymore..
+#${voffset 40}${execpi 600 sed -n '3p' $HOME/Accuweather_Conky_Int_Images/messages}

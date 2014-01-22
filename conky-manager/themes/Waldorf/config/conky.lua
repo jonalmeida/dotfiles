@@ -30,7 +30,7 @@ local a_green=0
 local a_blue=0
 local a_alpha=1
 local a_start=10
---line 1 settings end  
+--line 1 settings end
 local a_num=tonumber(a_arg)
 --line 1 background
 
@@ -45,7 +45,7 @@ bar_adjust=-2
 settings={--CPU GRAPH CPU1
 number=tonumber(conky_parse("${cpu cpu1}")),--conky object to read
 number_max=100,--max value of conky object
-bar_startx=-300,--x coordinate
+bar_startx=-325,--x coordinate
 bar_starty=25+bar_adjust,--y coordinate
 divisions=38,--number of blocks
 div_width=2,--horizontal size
@@ -59,7 +59,7 @@ end_color={0xFF0000,1},--end color for gradient
 settings={--CPU GRAPH CPU1
 number=tonumber(conky_parse("${cpu cpu2}")),--conky object to read
 number_max=100,--max value of conky object
-bar_startx=-300,--x coordinate
+bar_startx=-325,--x coordinate
 bar_starty=90+bar_adjust,--y coordinate
 divisions=38,--number of blocks
 div_width=2,--horizontal size
@@ -73,7 +73,7 @@ end_color={0xFF0000,1},--end color for gradient
 settings={--CPU GRAPH CPU1
 number=tonumber(conky_parse("${cpu cpu3}")),--conky object to read
 number_max=100,--max value of conky object
-bar_startx=-300,--x coordinate
+bar_startx=-325,--x coordinate
 bar_starty=160+bar_adjust,--y coordinate
 divisions=38,--number of blocks
 div_width=2,--horizontal size
@@ -87,7 +87,7 @@ end_color={0xFF0000,1},--end color for gradient
 settings={--CPU GRAPH CPU1
 number=tonumber(conky_parse("${cpu cpu4}")),--conky object to read
 number_max=100,--max value of conky object
-bar_startx=-300,--x coordinate
+bar_startx=-325,--x coordinate
 bar_starty=225+bar_adjust,--y coordinate
 divisions=38,--number of blocks
 div_width=2,--horizontal size
