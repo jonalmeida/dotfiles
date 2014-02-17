@@ -103,4 +103,6 @@ fi
 
 
 # Execute local bashrc
-source $HOME/.bashrc.local
+if [ -f $HOME/.bashrc.local  ]; then
+  source $HOME/.bashrc.local
+fi
