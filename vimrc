@@ -42,6 +42,10 @@ augroup JumpCursorOnEdit
             \ endif
 augroup END
 
+" Vim config for Rust
+filetype on
+au BufNewFile,BufRead *.rs set filetype=rust
+
 " Necesary  for lots of cool vim things
 set nocompatible
 
@@ -85,3 +89,10 @@ set directory=~/.vim/tmp
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" Single character insert using space
+nmap <Space> i_<Esc>r
+
+" Visual selection inserts tabs
+vmap <Tab> >gv
+vmap <S-Tab> <gv
