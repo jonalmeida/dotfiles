@@ -1,10 +1,9 @@
 set ffs=unix,dos,mac        " set file formats
 set number                  " line numbers
 set background=dark         " background
-colorscheme vividchalk      " theme
-"colorscheme molokai
-"let g:molokai_original = 1
-call pathogen#incubate()
+set t_Co=256
+"colorscheme vividchalk      " theme
+execute pathogen#infect('bundle/{}')
 call pathogen#helptags()
 filetype off
 syntax on
@@ -42,11 +41,7 @@ augroup JumpCursorOnEdit
             \ endif
 augroup END
 
-" Vim config for Rust
-filetype on
-au BufNewFile,BufRead *.rs set filetype=rust
-
-" Necesary  for lots of cool vim things
+" Necesary for lots of cool vim things
 set nocompatible
 
 " This shows what you are typing as a command.  I love this!
@@ -96,3 +91,23 @@ nmap <Space> i_<Esc>r
 " Visual selection inserts tabs
 vmap <Tab> >gv
 vmap <S-Tab> <gv
+
+" Rust env
+set hidden
+let g:racer_cmd = "/home/jonathan/git/racer/target/release/racer"
+let $RUST_SRC_PATH="/home/jonathan/git/rust/src/"
+
+" Markdown - disable folding
+let g:vim_markdown_folding_disabled=1
+
+" Airline configuration
+set laststatus=2
+set guifont=Sauce\ Code\ Powerline:h10
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+colorscheme gotham256       " theme
+
+
+"hi Normal ctermbg=none
+"highlight NonText ctermbg=none
