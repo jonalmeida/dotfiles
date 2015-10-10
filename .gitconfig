@@ -1,0 +1,7 @@
+[core]
+	editor = /usr/bin/vim
+[user]
+	name = Jonathan Almeida
+	email = git@jonalmeida.com
+[push]
+	default = simple

@@ -2,6 +2,7 @@ set ffs=unix,dos,mac        " set file formats
 set number                  " line numbers
 set background=dark         " background
 set t_Co=256
+set backspace=2
 "colorscheme vividchalk      " theme
 execute pathogen#infect('bundle/{}')
 call pathogen#helptags()
@@ -64,7 +65,7 @@ set wildmenu
 set wildmode=list:longest,full
 
 " Enable mouse support in console
-"set mouse=a
+set mouse=a
 
 " Ignoring case is a fun trick
 set ignorecase
@@ -92,13 +93,11 @@ nmap <Space> i_<Esc>r
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
-" Rust env
-set hidden
-let g:racer_cmd = "/home/jonathan/git/racer/target/release/racer"
-let $RUST_SRC_PATH="/home/jonathan/git/rust/src/"
-
 " Markdown - disable folding
 let g:vim_markdown_folding_disabled=1
+
+" Automatically wrap long git commit messages
+au FileType gitcommit set tw=72
 
 " Airline configuration
 set laststatus=2
@@ -108,6 +107,26 @@ let g:airline_powerline_fonts = 1
 
 colorscheme gotham256       " theme
 
+" NERDTree pluging
+autocmd VimEnter * NERDTree
+autocmd BufEnter * NERDTreeMirror
 
-"hi Normal ctermbg=none
-"highlight NonText ctermbg=none
+" Tab scrolling keybindings
+map  <C-l> :tabn<CR>
+map  <C-h> :tabp<CR>
+map  <C-i> :tabnew<CR>
+
+" TagBar key binding
+nmap <F8> :TagbarToggle<CR>
+
+"CTRL-t to toggle tree view with CTRL-t
+nmap <silent> <C-t> :NERDTreeToggle<CR>
+""Set F2 to put the cursor to the nerdtree
+nmap <silent> <F2> :NERDTreeFind<CR>
+
+" Rust env
+"set hidden
+let g:racer_cmd = "/Users/jalmeida/git/racer/target/release/racer"
+let $RUST_SRC_PATH="/Users/jalmeida/git/rust/src/"
+
+

@@ -1,0 +1,102 @@
+[ui]
+username = Jonathan Almeida [:jonalmeida] <jonalmeida942@gmail.com>
+merge = internal:merge
+editor = vim
+
+[alias]
+a = add
+b = bookmarks
+c = commit
+ca = commit --amend
+d = diff
+ds = diff --stat
+he = histedit
+l = log -G
+lf = log -fr "ancestors(.) & draft()"
+lfp = log -fr "last(draft()^ & not draft())" -T "{rev}"
+l1 = log -pl 1 -r .
+lp = log -Gr "draft() + draft()^"
+rb = rebase
+pl = pull
+ps = push
+try = push-to-try -m "try: -b o -p android-api-9,android-api-11 -u all -t none"
+try-robo = push-to-try -m "try: -b do -p android-api-9,android-api-11,android-x86 -u robocop -t none"
+u = update
+i = incoming -n -l1
+reset-soft = strip --keep -r .
+
+[extensions]
+trychooser = ~/.hgplugins/trychooser
+hgwatchman = ~/.hgplugins/hgwatchman/hgwatchman
+#hg-experimental = ~/.hgplugins/hg-experimental
+histedit = 
+hg-prompt = ~/.hgplugins/hg-prompt/prompt.py
+record = 
+progress = 
+pager = 
+color = 
+rebase = 
+mq = 
+bzexport = /Users/jalmeida/.mozbuild/version-control-tools/hgext/bzexport
+reviewboard = /Users/jalmeida/.mozbuild/version-control-tools/hgext/reviewboard/client.py
+bzpost = /Users/jalmeida/.mozbuild/version-control-tools/hgext/bzpost
+firefoxtree = /Users/jalmeida/.mozbuild/version-control-tools/hgext/firefoxtree
+bundleclone = /Users/jalmeida/.mozbuild/version-control-tools/hgext/bundleclone
+push-to-try = /Users/jalmeida/.mozbuild/version-control-tools/hgext/push-to-try
+mqext = /Users/jalmeida/.mozbuild/version-control-tools/hgext/mqext
+qimportbz = /Users/jalmeida/.mozbuild/version-control-tools/hgext/qimportbz
+
+[color]
+mode = auto
+
+status.modified = blue
+status.added = green
+status.removed = red
+status.deleted = cyan
+status.unknown = magenta
+#status.ignored = black
+#status.clean = none
+#status.copied = none
+
+qseries.applied = green
+qseries.unapplied = none
+qseries.missing = red
+
+diff.diffline = bold
+diff.extended = cyan bold
+diff.file_a = red
+diff.file_b = green
+diff.hunk = magenta
+diff.deleted = red
+diff.inserted = green
+diff.changed = white
+diff.trailingwhitespace = red_background
+
+[hostfingerprints]
+bugzilla.mozilla.org = f9:7e:62:42:4e:38:79:96:ca:87:71:2a:f8:51:38:c8:16:92:5c:a7
+bitbucket.org = 46:de:34:e7:9b:18:cd:7f:ae:fd:8b:e3:bc:f4:1a:5e:38:d7:ac:24
+hg.mozilla.org = af:27:b9:34:47:4e:e5:98:01:f6:83:2b:51:c9:aa:d8:df:fb:1a:27
+reviewboard-hg.mozilla = 1b:62:0b:40:35:87:bd:28:5a:a1:43:ce:c8:e6:c0:2f:d0:7f:b6:c3
+
+[mozilla]
+ircnick = jonalmeida
+
+[diff]
+git = 1
+showfunc = 1
+unified = 8
+
+[mqext]
+mqcommit = auto
+
+[defaults]
+qnew = -U
+
+[bugzilla]
+username = jonalmeida942@gmail.com
+apikey = saOT9D21XTaG39oTiWggJh8tKLWCpRiQ5Ld2t6hK
+
+[pager]
+pager = LESS=FRSXQ less
+attend = help,diff,log
+quiet = True
