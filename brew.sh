@@ -39,3 +39,6 @@ brew install watch
 brew install wget
 brew install eck
 brew install dark-modei
+
+# Remove outdated versions
+brew cleanup
