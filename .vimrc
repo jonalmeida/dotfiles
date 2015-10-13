@@ -129,4 +129,5 @@ nmap <silent> <F2> :NERDTreeFind<CR>
 let g:racer_cmd = "/Users/jalmeida/git/racer/target/release/racer"
 let $RUST_SRC_PATH="/Users/jalmeida/git/rust/src/"
 
-
+" Ag integration
+let g:ackprg = 'ag --nogroup --nocolor --column'
