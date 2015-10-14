@@ -83,9 +83,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Enables syntax highlighting in zsh
-source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Local zsh config
 if [[ -f ~/.zshrc-local ]]; then
    source ~/.zshrc-local
