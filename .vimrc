@@ -96,6 +96,9 @@ vmap <S-Tab> <gv
 " Markdown - disable folding
 let g:vim_markdown_folding_disabled=1
 
+" Javascript es6 highlighting for .jsm
+au BufNewFile,BufRead *.jsm set filetype=javascript
+
 " Automatically wrap long git commit messages
 au FileType gitcommit set tw=72
 
@@ -128,6 +131,33 @@ nmap <silent> <F2> :NERDTreeFind<CR>
 "set hidden
 let g:racer_cmd = "/Users/jalmeida/git/racer/target/release/racer"
 let $RUST_SRC_PATH="/Users/jalmeida/git/rust/src/"
+"tagbar integration
+let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits,traits',
+        \'i:impls,trait implementations',
+    \]
+    \}
 
 " Ag integration
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" Ctrl-P
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_user_command = {
+    \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files'],
+        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+        \ 3: ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f'],
+        \ },
+    \ 'fallback': 'find %s -type f'
+    \ }
