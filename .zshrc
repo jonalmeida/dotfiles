@@ -5,7 +5,11 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell-cyan"
+#ZSH_THEME="gotham-shell-prompt"
+#DEFAULT_USER="jalmeida"
+#GOTHAM_SHELL="$HOME/.config/gotham/gotham.sh"
+#[[ -s $GOTHAM_SHELL ]] && source $GOTHAM_SHELL
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,7 +53,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew npm)
+plugins=(git brew npm zsh-syntax-highlighting)
 
 # User configuration
 
@@ -98,10 +102,32 @@ lp() {
     if [[ -d ./.hg/ ]]; then
         clear && hg lp
     else
-        /usr/bin/lp
+        /usr/bin/lp $*
+    fi
+}
+
+# Use hg wip alias in mercurial directory
+wip() {
+    if [[ -d ./.hg/ ]]; then
+        clear && hg wip
+    fi
+}
+
+# Use hg wp alias in mercurial directory otherwise use normal wp
+wp() {
+    if [[ -d ./.hg/ ]]; then
+        clear && hg wp
     fi
 }
 
 adb-discover() {
     adb shell ip -f inet addr show wlan0
 }
+
+alias weather='curl wttr.in'
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Alias for using transfer.sh in the shell
+transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
+    tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
