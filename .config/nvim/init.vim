@@ -30,7 +30,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'w0rp/ale'
 
 " YouCompleteMe completion
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 
 " Oceanic-Next theme
 Plug 'mhartington/oceanic-next'
@@ -43,6 +43,12 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 " TagBar - function definition list
 Plug 'majutsushi/tagbar'
+
+" Emacs orgmode for Vim
+Plug 'jceb/vim-orgmode'
+
+" Dating incrementing support (for vim-orgmode)
+Plug 'tpope/vim-speeddating'
 
 call plug#end()
 
@@ -99,7 +105,7 @@ augroup END
 
 " Airline plugin settings
 set laststatus=2
-set guifont=Sauce\ Code\ Powerline:h10
+set guifont=FiraCode:h10
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -147,7 +153,7 @@ let g:airline_theme='oceanicnext'
 " Tab scrolling
 nmap <C-]> :tabn<CR>
 nmap <C-[> :tabp<CR>
-nmap <Tab> :tabnew<CR>
+"nmap <Tab> :tabnew<CR>
 
 " Buffer scrolling
 nmap <C-H> :bprevious!<CR>
@@ -179,9 +185,16 @@ inoremap jj <Esc>
 " Single character insert using space
 nmap <Space> i_<Esc>r
 
+" Move to next and prev whitespace
+"nmap <C-l> f<Space>
+"nmap <C-h> F<Space>
+
 " Ignoring case and adding smart case
 set ignorecase
 set smartcase
 
 " Mac OS X clipboard support
 set clipboard=unnamed
+
+" Fuck you swap files!
+set noswapfile
