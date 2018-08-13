@@ -1,5 +1,5 @@
 [user]
-	name = Jonathan Almeida
+  name = Jonathan Almeida
   email = git@jonalmeida.com
 
 [alias]
@@ -10,7 +10,7 @@
   l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   #ll = log --stat --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   ll = log --stat --abbrev-commit  --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%n%n%b'
-	dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less -r; }; f"
+  dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy  | less -r; }; f"
   daf = !sh -c 'git dsf \"$1^\" \"$1\"' -
 
 [color]
@@ -18,25 +18,24 @@
   interactive = auto
 
 [core]
-	pager = less
-	editor = nvim
+  pager = less
+  editor = nvim
 
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 
 [pull]
   # You can instruct git so that any pull uses rebase instead than merge and it preserves while doing so. Requires git 1.8.5+
-	rebase = preserve
+  rebase = preserve
 
 [push]
-    default = simple
+  default = simple
 
 [funcname]
   java = ^[  ]*((public|static).*)$
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
