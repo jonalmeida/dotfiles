@@ -1,6 +1,6 @@
 dotfiles
 ========
 
-### Basica Installation
+### Basic Installation
 
-- Install `zsh git mercurial mosh vim tmux wget`
+- Install `zsh git mercurial alacritty vim tmux wget`
