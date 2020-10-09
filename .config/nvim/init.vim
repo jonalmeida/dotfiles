@@ -20,17 +20,29 @@ Plug 'whatyouhide/vim-gotham'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Rust syntax highlighting
+" Rust syntax support
 Plug 'rust-lang/rust.vim'
+
+" Kotlin syntax support
+Plug 'udalov/kotlin-vim'
+
+" Elixir syntax support
+Plug 'elixir-lang/vim-elixir'
+Plug 'thinca/vim-ref' " doc support
+Plug 'kbrw/elixir.nvim', { 'do': 'yes \| ./install.sh' } " auto-complete
 
 " Ctrl-P file search
 Plug 'kien/ctrlp.vim'
 
 " ALE lint engine
-Plug 'w0rp/ale'
+"Plug 'dense-analysis/ale'
 
-" YouCompleteMe completion
+" Auto-completion
 "Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 " Oceanic-Next theme
 Plug 'mhartington/oceanic-next'
@@ -42,13 +54,19 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 " TagBar - function definition list
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 
 " Emacs orgmode for Vim
-Plug 'jceb/vim-orgmode'
+"Plug 'jceb/vim-orgmode'
 
 " Dating incrementing support (for vim-orgmode)
-Plug 'tpope/vim-speeddating'
+"Plug 'tpope/vim-speeddating'
+
+" Vim Surround
+Plug 'tpope/vim-surround'
+
+" Show files touched compared to version control
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -115,6 +133,9 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " YouCompleteMe settings
 "let g:python_host_prog = '/usr/local/bin/python'
+
+" Dooplete auto-complete enable
+let g:deoplete#enable_at_startup = 1
 
 """""""""""""""""
 " Highlightings "
@@ -198,3 +219,6 @@ set clipboard=unnamed
 
 " Fuck you swap files!
 set noswapfile
+
+" Turn off the bell because it sucks to hear this when in IntelliJ IDEs
+set visualbell
