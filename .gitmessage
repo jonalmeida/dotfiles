@@ -1,6 +1,6 @@
-# <type> #[<id>]: <subject> (Max 72 char)
+# Bug [<id>] - <subject> (Max 72 char)
 # |<----             Using a Maximum Of 72 Characters             ---->|
-# Example: Close #1234: Move important code to important place
+# Example: Bug 123456 - Move important code to important place
 
 
 # Explain why this change is being made
@@ -9,13 +9,12 @@
 # Provide links or keys to any relevant tickets, articles or other resources
 # Example: Github issue #23
 
-# Add a co-author when working with others
+# Add a co-author to the patch when working with others
 # Example: Co-authored-by: John Doe <john.doe@example.com>
 
 # --- COMMIT END ---
-# Type can be
-#    Issue    (link this commit to an issue but do not close it)
-#    Close    (link this commit to an issue and close it when the commit is merged)
+# Type can only be
+#    Bug    (link this commit to have the issue closed when merged)
 # --------------------
 # Remember to
 #    Capitalize the subject line
