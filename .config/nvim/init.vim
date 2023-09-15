@@ -45,6 +45,7 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+let g:deoplete#enable_at_startup = 1
 
 " Fuzz-finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -139,16 +140,6 @@ let g:airline_powerline_fonts = 1
 " Ctrl-P key mapping
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
-" Deoplete auto-complete enable
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
 
 """""""""""""""""
 " Highlightings "
