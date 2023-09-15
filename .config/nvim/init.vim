@@ -38,11 +38,20 @@ Plug 'kien/ctrlp.vim'
 "Plug 'dense-analysis/ale'
 
 " Auto-completion
-"Plug 'Valloric/YouCompleteMe'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+" Fuzz-finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Git-coauthor; requires fzf
+Plug 'maxjacobson/vim-fzf-coauthorship'
 
 " Oceanic-Next theme
 Plug 'mhartington/oceanic-next'
@@ -131,10 +140,14 @@ let g:airline_powerline_fonts = 1
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" YouCompleteMe settings
-"let g:python_host_prog = '/usr/local/bin/python'
-
-" Dooplete auto-complete enable
+" Deoplete auto-complete enable
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 let g:deoplete#enable_at_startup = 1
 
 """""""""""""""""
@@ -222,3 +235,6 @@ set noswapfile
 
 " Turn off the bell because it sucks to hear this when in IntelliJ IDEs
 set visualbell
+
+" Coauthorship key binding
+nmap <silent> <C-g> :Coauthorship<CR>
