@@ -16,18 +16,12 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Tree-sitter for language support
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" Gotham colorscheme
-Plug 'whatyouhide/vim-gotham'
-
 " Airline for those killer status and tabline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Rust syntax support
-"Plug 'rust-lang/rust.vim'
-
-" Kotlin syntax support
-"Plug 'udalov/kotlin-vim'
+Plug 'rust-lang/rust.vim'
 
 " Elixir syntax support
 "Plug 'elixir-lang/vim-elixir'
@@ -48,9 +42,6 @@ let g:deoplete#enable_at_startup = 1
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Git-coauthor; requires fzf
-Plug 'maxjacobson/vim-fzf-coauthorship'
-
 " Oceanic-Next theme
 Plug 'mhartington/oceanic-next'
 
@@ -60,13 +51,19 @@ Plug 'editorconfig/editorconfig-vim'
 " Relative line numbers
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
-" Dating incrementing support (for vim-orgmode)
+" Dating incrementing support
 Plug 'tpope/vim-speeddating'
 
 " Vim Surround
 Plug 'tpope/vim-surround'
 
-"" Version control
+"""""""""""""""""""
+" Version control "
+"""""""""""""""""""
+
+" Git-coauthor; requires fzf
+Plug 'maxjacobson/vim-fzf-coauthorship'
+
 " Show files touched compared to version control
 Plug 'airblade/vim-gitgutter'
 
@@ -154,6 +151,9 @@ let g:ale_lint_on_save = 1
 
 " Gotham
 "colorscheme gotham
+
+" Gotham colorscheme
+Plug 'whatyouhide/vim-gotham'
 
 " OceanicNext
 if (has("termguicolors"))
