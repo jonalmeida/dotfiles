@@ -13,6 +13,9 @@ call plug#begin('~/.config/nvim/plugged')
 " NERDTree file explorer
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
+" Tree-sitter for language support
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " Gotham colorscheme
 Plug 'whatyouhide/vim-gotham'
 
@@ -21,21 +24,15 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Rust syntax support
-Plug 'rust-lang/rust.vim'
+"Plug 'rust-lang/rust.vim'
 
 " Kotlin syntax support
-Plug 'udalov/kotlin-vim'
+"Plug 'udalov/kotlin-vim'
 
 " Elixir syntax support
-Plug 'elixir-lang/vim-elixir'
-Plug 'thinca/vim-ref' " doc support
-Plug 'kbrw/elixir.nvim', { 'do': 'yes \| ./install.sh' } " auto-complete
-
-" Ctrl-P file search
-Plug 'kien/ctrlp.vim'
-
-" ALE lint engine
-"Plug 'dense-analysis/ale'
+"Plug 'elixir-lang/vim-elixir'
+"Plug 'thinca/vim-ref' " doc support
+"Plug 'kbrw/elixir.nvim', { 'do': 'yes \| ./install.sh' } " auto-complete
 
 " Auto-completion
 if has('nvim')
@@ -63,20 +60,18 @@ Plug 'editorconfig/editorconfig-vim'
 " Relative line numbers
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
-" TagBar - function definition list
-"Plug 'majutsushi/tagbar'
-
-" Emacs orgmode for Vim
-"Plug 'jceb/vim-orgmode'
-
 " Dating incrementing support (for vim-orgmode)
-"Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-speeddating'
 
 " Vim Surround
 Plug 'tpope/vim-surround'
 
+"" Version control
 " Show files touched compared to version control
 Plug 'airblade/vim-gitgutter'
+
+" A helpful syntax highlighter for jjdescription files
+Plug 'avm99963/vim-jjdescription'
 
 call plug#end()
 
@@ -137,10 +132,6 @@ set guifont=FiraCode:h10
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-" Ctrl-P key mapping
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 """""""""""""""""
 " Highlightings "
 """""""""""""""""
@@ -200,6 +191,9 @@ nmap <F8> :TagbarToggle<CR>
 " Correct indentation (global)
 nmap <F7> gg=G
 
+" fzf for fuzzy file search
+nmap <C-p> :Files<CR>
+
 " Visual insert/remove with tab
 vmap <Tab> >gv
 vmap <S-Tab> <gv
@@ -211,8 +205,8 @@ inoremap jj <Esc>
 nmap <Space> i_<Esc>r
 
 " Move to next and prev whitespace
-"nmap <C-l> f<Space>
-"nmap <C-h> F<Space>
+nmap <C-l> f<Space>
+nmap <C-h> F<Space>
 
 " Ignoring case and adding smart case
 set ignorecase
