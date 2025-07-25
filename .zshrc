@@ -1,15 +1,20 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell-cyan"
-#ZSH_THEME="gotham-shell-prompt"
-#DEFAULT_USER="jalmeida"
-#GOTHAM_SHELL="$HOME/.config/gotham/gotham.sh"
-#[[ -s $GOTHAM_SHELL ]] && source $GOTHAM_SHELL
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/jalmeida/.oh-my-zsh"
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -43,7 +48,10 @@ ZSH_THEME="robbyrussell-cyan"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
@@ -53,14 +61,19 @@ ZSH_THEME="robbyrussell-cyan"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew npm zsh-syntax-highlighting)
+plugins=(
+  git
+)
+
+if [ -f "$HOME/.zshrc-local" ]; then
+  source "$HOME/.zshrc-local"
+fi
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -76,7 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -87,36 +100,25 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Local zsh config
-if [[ -f ~/.zshrc-local ]]; then
-   source ~/.zshrc-local
-fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Local bin directory
-if [[ -d $HOME/.bin/ ]]; then
-    export PATH=$HOME/.bin:$PATH
-fi
+export EDITOR=nvim
 
-# Use hg lp alias in mercurial directory otherwise use normal lp
-lp() {
-    if [[ -d ./.hg/ ]]; then
-        clear && hg lp
-    else
-        /usr/bin/lp $*
-    fi
-}
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Use hg wip alias in mercurial directory
-wip() {
-    if [[ -d ./.hg/ ]]; then
-        clear && hg wip
-    fi
-}
+# A function to visually change directories with lstr
+lcd() {
+    # Run lstr and capture the selected path into a variable.
+    # The TUI will draw on stderr, and the final path will be on stdout.
+    local selected_dir
+    selected_dir="$(lstr interactive -g --icons)"
 
-# Use hg wp alias in mercurial directory otherwise use normal wp
-wp() {
-    if [[ -d ./.hg/ ]]; then
-        clear && hg wp
+    # If the user selected a path (and didn't just quit), `cd` into it.
+    # Check if the selection is a directory.
+    if [[ -n "$selected_dir" && -d "$selected_dir" ]]; then
+        cd "$selected_dir"
     fi
 }
 
@@ -124,10 +126,10 @@ adb-discover() {
     adb shell ip -f inet addr show wlan0
 }
 
+# Personal pref aliases
+## Use exa as a replacement for ls; keep at the top so everything else inherits it.
+alias ls=exa
+
+alias watchjj="watch --color -n1 jj log --color always --template builtin_log_compact --ignore-working-copy"
+
 alias weather='curl wttr.in'
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# Alias for using transfer.sh in the shell
-transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
-    tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
