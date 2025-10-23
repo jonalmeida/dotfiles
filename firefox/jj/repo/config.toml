@@ -1,0 +1,41 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[git]
+fetch = ["origin"]
+
+[user]
+name = "Jonathan Almeida"
+
+[revset-aliases]
+"trunk()" = "main@origin"
+"immutable_heads()" = '''
+builtin_immutable_heads()
+| remote_bookmarks('autoland')
+| remote_bookmarks('beta')
+| remote_bookmarks('esr')
+| remote_bookmarks('release')
+'''
+# Get all changes with "Bug 12345" in the subject (can be improved with https://github.com/jj-vcs/jj/issues/5895)
+'bug_all(x)' = 'mutable() & subject(glob:"Bug *") & subject(x)'
+# Get head change(s) with "Bug 12345" in the subject
+'bug(x)' = 'heads(bug_all(x))'
+# Get root change(s) with "Bug 12345" in the subject
+'bug_root(x)' = 'roots(bug_all(x))'
+
+[fix.tools.mozlint]
+command = ["/Users/jalmeida/src/firefox/tools/lint/pipelint", "$path"]
+patterns = ["glob:'**/*'"]
+
+[ui]
+editor = "nvim"
+# Doesn't seem to make it any better than what I currently have.
+#pager = ["sh", "-c", "diff-so-fancy | less -RFX"]
+
+[aliases]
+try-push = ["util", "exec", "--", "bash", "-c", """
+#!/usr/bin/env bash
+set -euo pipefail
+jj new --quiet
+./mach try $@ || true
+jj prev --edit --quiet
+""", ""]
