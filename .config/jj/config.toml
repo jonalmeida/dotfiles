@@ -1,0 +1,19 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Jonathan Almeida"
+email = "git@jonalmeida.com"
+
+[fsmonitor]
+backend = "watchman"
+
+[revset-aliases]
+"stack()" = "fork_point(mutable()::@)- | fork_point(mutable()::@)::"
+"wip()" = "mutable()- | mutable()::heads(mutable())"
+
+[ui]
+editor = "nvim"
+
+[aliases]
+watchlog = ["util",  "exec", "--ignore-working-copy",  "--",  "sh", "-c",  "watchexec --clear --workdir=$(jj git root --ignore-working-copy) jj --no-pager --ignore-working-copy log"]
+tug = ["bookmark", "move", "--from", "heads(::@ & bookmarks())", "--to", "@"]
