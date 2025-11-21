@@ -15,5 +15,12 @@ backend = "watchman"
 editor = "nvim"
 
 [aliases]
+# Watch the .jj directory for changes and run log.
 watchlog = ["util",  "exec", "--ignore-working-copy",  "--",  "sh", "-c",  "watchexec --clear --workdir=$(jj git root --ignore-working-copy) jj --no-pager --ignore-working-copy log"]
+# Update your bookmarks to your latest rev.
 tug = ["bookmark", "move", "--from", "heads(::@ & bookmarks())", "--to", "@"]
+# Update all revs to the latest main.
+hoist = ["util", "exec", "--", "bash", "-c", """
+set -euo pipefail
+jj rebase -s "mutable()&$1+" -d "main"
+""", ""]
