@@ -7,20 +7,43 @@ email = "git@jonalmeida.com"
 [fsmonitor]
 backend = "watchman"
 
-[revset-aliases]
-"stack()" = "fork_point(mutable()::@)- | fork_point(mutable()::@)::"
-"wip()" = "mutable()- | mutable()::heads(mutable())"
-
 [ui]
 editor = "nvim"
+merge-editor = ["meld", "$left", "$base", "$right", "-o", "$output", "--auto-merge"]
 
 [aliases]
+l = ["log", "--reversed"]
+s = ["l", "-r", "stack()"]
+wip = ["l", "-r", "wip()"]
+heads = ["l", "-r", "wip_heads()"]
 # Watch the .jj directory for changes and run log.
-watchlog = ["util",  "exec", "--ignore-working-copy",  "--",  "sh", "-c",  "watchexec --clear --workdir=$(jj git root --ignore-working-copy) jj --no-pager --ignore-working-copy log"]
-# Update your bookmarks to your latest rev.
+watchlog = ["util",  "exec", "--ignore-working-copy",  "--",  "sh", "-c",  "watchexec --clear --workdir=$(jj git root --ignore-working-copy) --debounce 2000 jj --no-pager --ignore-working-copy log"]
+# Update your bookmarks to your latest rev; use `bookmark advance` in the future.
 tug = ["bookmark", "move", "--from", "heads(::@ & bookmarks())", "--to", "@"]
 # Update all revs to the latest main.
 hoist = ["util", "exec", "--", "bash", "-c", """
 set -euo pipefail
-jj rebase -s "mutable()&$1+" -d "main"
+jj rebase -s "mutable()&$1+" -d "main@origin"
 """, ""]
+descmany = ["describe", "--config", "templates.draft_commit_description='description'"]
+
+[revset-aliases]
+"stack()" = "fork_point(mutable()::@)- | fork_point(mutable()::@)::"
+"wip()" = "mutable()- | mutable()::heads(mutable())"
+"wip_heads()" = "heads(mutable() & mine() & empty())- | heads(mutable() & mine() & ~empty())"
+
+[templates]
+draft_commit_description = '''
+concat(
+  description,
+  surround(
+    "\nJJ: This commit contains the following changes:\n", "",
+    indent("JJ:     ", diff.stat(72)),
+  ),
+  surround("\nJJ: Diff:\n", "", indent("JJ:  ", diff.git(4)))
+)
+'''
+
+
+# In v0.39.0, you can use this line now, but as-is, it's a bit ugly to see in nvim today.
+#draft_commit_description = "builtin_draft_commit_description_with_diff"
