@@ -1,0 +1,4 @@
+- Speak using ASD-STE100 simplified technical English.
+- In plans, always include an end-to-end test that you will execute yourself before each commit.
+- Never add Claude as a co-author in any patches.
+- When a `.jj` directory is present in the project, always use `jj` for version control. Fallback to `git` only if there are unrecoverable `jj` failures.
