@@ -172,9 +172,9 @@ nmap <C-[> :tabp<CR>
 "nmap <Tab> :tabnew<CR>
 
 " Buffer scrolling
-nmap <C-H> :bprevious!<CR>
-nmap <C-L> :bnext!<CR>
-nmap <C-I> :enew<CR>
+nnoremap <C-H> :bprevious<CR>
+nnoremap <C-L> :bnext<CR>
+nnoremap <C-I> :enew<CR>
 
 " Saving current buffer
 noremap <C-s> :w<CR>
@@ -205,8 +205,9 @@ inoremap jj <Esc>
 nmap <Space> i_<Esc>r
 
 " Move to next and prev whitespace
-nmap <C-l> f<Space>
-nmap <C-h> F<Space>
+" Needs a terminal that sends CSI u / modifyOtherKeys (see ~/.tmux.conf)
+nnoremap <C-S-l> f<Space>
+nnoremap <C-S-h> F<Space>
 
 " Ignoring case and adding smart case
 set ignorecase
