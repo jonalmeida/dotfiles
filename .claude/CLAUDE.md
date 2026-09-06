@@ -2,3 +2,5 @@
 - In plans, always include an end-to-end test that you will execute yourself before each commit.
 - Never add Claude as a co-author in any patches.
 - When a `.jj` directory is present in the project, always use `jj` for version control. Fallback to `git` only if there are unrecoverable `jj` failures.
+  - Check `jj workspace list` and treat them as the equivalent as Claude would with `git worktree` (i.e. use it for running parallel sessions. `claude --worktree <name>` should function using `jj` as well.
+- When a web browser is needed, always use Firefox.
